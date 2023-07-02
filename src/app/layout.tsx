@@ -1,7 +1,25 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Open_Sans, Montserrat, Old_Standard_TT } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+   subsets: ['latin'],
+   variable: '--font-inter',
+   weight: '500',
+   })
+const openSans = Open_Sans({
+   subsets: ['latin'],
+    variable: '--font-open-sans',
+    weight: '600',
+  })
+const montserrat = Montserrat({
+   subsets: ['latin'],
+    variable: '--font-montserrat',
+    weight: '500',
+  })
+const oldStandard = Old_Standard_TT({
+   subsets: ['latin'],weight: '400',
+    variable: '--font-old-standard-tt', 
+  })
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${openSans.variable} ${montserrat.variable} ${oldStandard.variable}`}>{children}</body>
     </html>
   )
 }
