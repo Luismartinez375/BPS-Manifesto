@@ -1,11 +1,14 @@
-import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <nav className='top-0 bg-purple-950 w-full h-12'>
-        <h1 className=' font-oldStandardTT text-3xl text-orange-400'>M</h1>
-      </nav>
+    <main className="flex flex-col justify-around min-h-screen bg-bgManifesto"> 
+      <div className=' w-screen h-36 bg-manifestoMobile bg-repeat-x bg-center'>
+     </div>
+     <p className=' self-center font-montserrat text-xl text-white w-4/5 h-auto text-center'>
+      No one is currently signed in. Be the first to sign in.</p>
+     
+     <button className=" bg-orange-300 w-44 h-14 text-black font-inter align-middle self-center">Sign In</button>
+     
     </main>
   )
 }
