@@ -13,6 +13,7 @@ module.exports = {
         montserrat: ['var(--font-montserrat)'],
         openSans: ['var(--font-open-sans)'],
         oldStandardTT: ['var(--font-old-standard-tt)'],
+        inter: ['var(--font-inter)'],
       },
       colors: {
         navbar: '#1f1f39',

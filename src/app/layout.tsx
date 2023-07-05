@@ -1,7 +1,5 @@
 import './globals.css'
 import { Inter, Open_Sans, Montserrat, Old_Standard_TT } from 'next/font/google'
-import Image from 'next/image'
-import Hamburger from '../../public/Hamburger_Menu.svg'
 const inter = Inter({
    subsets: ['latin'],
    variable: '--font-inter',

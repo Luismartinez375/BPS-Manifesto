@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Vector from '../../public/Vector.svg'
-import VectorMobile from '../../public/VectorMobile.svg'
+
 export default function Home() {
   return (
-    <main className="flex flex-col justify-normal content-center min-h-screen bg-bgManifesto"> 
-      <div className='mt-9 w-screen h-36 relative  bg-manifestoMobile bg-repeat-x bg-center'>
+    <main className="flex flex-col justify-around min-h-screen bg-bgManifesto"> 
+      <div className=' w-screen h-36 bg-manifestoMobile bg-repeat-x bg-center'>
      </div>
-     <div className=' '><p className=' font-montserrat text-xl text-white w-2/3 h-auto '>No one is currently signed in. Be the first to sign in.</p></div>
+     <p className=' self-center font-montserrat text-xl text-white w-4/5 h-auto text-center'>
+      No one is currently signed in. Be the first to sign in.</p>
      
+     <button className=" bg-orange-300 w-44 h-14 text-black font-inter align-middle self-center">Sign In</button>
      
     </main>
   )
