@@ -11,7 +11,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@types/node": "20.3.3",
@@ -28,6 +29,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "prettier": "^3.0.0",
     "yarn": "^1.22.19"
   }
 }
