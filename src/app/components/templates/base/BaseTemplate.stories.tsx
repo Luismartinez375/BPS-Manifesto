@@ -1,21 +1,16 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { mockBaseTemplateProps } from './BaseTemplate.mocks';
 import BaseTemplate, { IBaseTemplate } from './baseTemplate';
-export default {
-  title: 'templates/BaseTemplate',
+
+const meta: Meta<typeof BaseTemplate> = {
   component: BaseTemplate,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {},
-} as Meta<typeof BaseTemplate>;
+};
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof BaseTemplate> = (args) => (
-  <BaseTemplate {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof BaseTemplate>;
 
-export const Base = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-
-Base.args = {
-  ...mockBaseTemplateProps.base,
-} as IBaseTemplate;
+export const Primary: Story = {
+  args: {
+    ...mockBaseTemplateProps.base,
+  } as IBaseTemplate,
+};
