@@ -13,7 +13,9 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@types/node": "20.3.3",
@@ -32,9 +34,22 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
+    "@storybook/addon-essentials": "^7.0.26",
+    "@storybook/addon-interactions": "^7.0.26",
+    "@storybook/addon-links": "^7.0.26",
+    "@storybook/addon-mdx-gfm": "^7.0.26",
+    "@storybook/blocks": "^7.0.26",
+    "@storybook/nextjs": "^7.0.26",
+    "@storybook/react": "^7.0.26",
+    "@storybook/testing-library": "^0.2.0",
     "cross-env": "^7.0.3",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
     "prettier": "^3.0.0",
+    "storybook": "^7.0.26",
     "yarn": "^1.22.19"
+  },
+  "resolutions": {
+    "webpack": "^5"
   }
 }
