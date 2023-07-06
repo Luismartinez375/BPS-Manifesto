@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react';
+import '../src/app/globals.css';
 
 const BREAKPOINTS_INT = {
   xs: 375,
