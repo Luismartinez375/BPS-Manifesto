@@ -1,4 +1,8 @@
 export default function Home() {
+  // const path = '../../database.sqlite';
+  // const db = new SQLiteDB(path);
+  // db.createTable();
+  // const users = getAllUsers(path);
   return (
     <main className="flex flex-col justify-around min-h-screen bg-bgManifesto">
       <div className=" w-screen h-36 bg-manifestoMobile bg-repeat-x bg-center"></div>
