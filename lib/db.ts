@@ -13,7 +13,7 @@ class SQLiteDB {
     });
   }
 
-  public createTable() {
+  public async createTable() {
     const sql = `CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, phone TEXT, email TEXT, emergency_name TEXT, emergency_phone TEXT)`;
     this.db.run(sql, (err) => {
       if (err) {
@@ -25,12 +25,8 @@ class SQLiteDB {
     });
   }
 
-  public closeConnection() {
-    this.db.close((err) => {
-      if (err) {
-        console.error(err.message);
-        return;
-      }
+  public async closeConnection() {
+    this.db.close(() => {
       console.log('Closed the database connection.');
     });
   }

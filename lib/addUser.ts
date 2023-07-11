@@ -1,28 +1,56 @@
+import { User } from '../types';
 import SQLiteDB from './db';
 
-export async function deleteUser(userId: number): Promise<void> {
-  const dbPath = './path/to/your/database.sqlite'; // Replace with your database file path
-
+export async function addUser(user: User, path: string): Promise<void> {
+  const dbPath = path; // Replace with your database file path
   // Create and initialize the SQLiteDB instance
   const db = new SQLiteDB(dbPath);
-
   try {
-    await new Promise((resolve, reject) => {
-      db.db.run('DELETE FROM users WHERE id = ?', [userId], function (err) {
-        if (err) {
-          reject(err);
-        } else {
-          if (this.changes > 0) {
-            console.log(`User with ID ${userId} has been deleted.`);
-          } else {
-            console.log(`User with ID ${userId} not found.`);
+    // Check if the email already exists in the database
+    const existingUser = await new Promise<User | undefined>(
+      (resolve, reject) => {
+        db.db.get(
+          'SELECT * FROM users WHERE email = ? AND phone = ?',
+          [user.Email, user.PhoneNumber],
+          (err, row: any) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(row);
+            }
           }
-        }
+        );
+      }
+    );
+    if (existingUser) {
+      console.log('user email and phone already exists');
+    } else {
+      await new Promise<void>((resolve, reject) => {
+        db.db.run(
+          `INSERT INTO users (name, phone, email, emergency_name, emergency_phone) VALUES (?, ?, ?, ?, ?)`,
+          [
+            user.Name,
+            user.PhoneNumber,
+            user.Email,
+            user.EmergenyContactname,
+            user.EmergencyContact,
+          ],
+          function (err) {
+            if (err) {
+              reject(err);
+              console.log(err);
+              throw err;
+            } else {
+              console.log(`User ${user.Name} has been added.`);
+              resolve();
+            }
+          }
+        );
       });
-    });
+    }
   } catch (error) {
-    throw new Error('Failed to delete the user from the database.');
-  } finally {
-    db.closeConnection();
+    throw new Error('Failed to add the user to the database.');
   }
+
+  db.closeConnection();
 }
