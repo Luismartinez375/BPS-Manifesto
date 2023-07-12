@@ -1,9 +1,9 @@
 type User = {
   id?: number;
   Name: string;
-  PhoneNumber: string;
+  PhoneNumber: number;
   Email: string;
   EmergenyContactname: string;
-  EmergencyContact: string;
+  EmergencyContact: number;
 };
 export { User };
