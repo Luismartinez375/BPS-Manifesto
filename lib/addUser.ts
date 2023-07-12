@@ -6,7 +6,7 @@ export async function addUser(user: User, path: string): Promise<void> {
   // Create and initialize the SQLiteDB instance
   const db = new SQLiteDB(dbPath);
   try {
-    // Check if the email already exists in the database
+    // Check if the email and phone already exists in the database
     const existingUser = await new Promise<User | undefined>(
       (resolve, reject) => {
         db.db.get(
