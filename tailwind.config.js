@@ -20,11 +20,13 @@ module.exports = {
         bgManifesto: '#19192e',
         saveButton: '#838bc8',
         form: '#f5f5f5',
-        bgForm: '#9393aa'
-
+        bgForm: '#9393aa',
+        bgWeb: '#19192e',
       },
       backgroundImage: {
         manifestoMobile: "url('/VectorMobile.svg')",
+        manifestoMobile2: "url('/background.svg')",
+        manifestoWeb: "url('/Vector.svg')",
       },
     },
   },

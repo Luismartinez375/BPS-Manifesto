@@ -7,3 +7,4 @@ type User = {
   EmergencyContact: string;
 };
 export { User };
+
