@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import ListItem, { IlistItem } from './listItem';
-import { mocklistItemProps } from './listItem.mocks';
+import ListItem, { IListItem } from './listItem';
 const meta: Meta<typeof ListItem> = {
   component: ListItem,
 };
@@ -10,7 +9,7 @@ type Story = StoryObj<typeof ListItem>;
 
 export const Primary: Story = {
   args: {
-    ...mocklistItemProps.base,
-  } as IlistItem,
-  render: () => <ListItem sampleTextProp=""></ListItem>,
+    sampleTextProp: 'Sample text',
+  } as IListItem,
+  
 };

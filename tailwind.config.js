@@ -18,6 +18,10 @@ module.exports = {
       colors: {
         navbar: '#1f1f39',
         bgManifesto: '#19192e',
+        saveButton: '#838bc8',
+        form: '#f5f5f5',
+        bgForm: '#9393aa'
+
       },
       backgroundImage: {
         manifestoMobile: "url('/VectorMobile.svg')",

@@ -1,9 +1,9 @@
-import { IlistItem } from './listItem';
+import { IListItem } from './listItem';
 
-const base: IlistItem = {
+const base: IListItem = {
   sampleTextProp: 'Simple Text',
 };
 
-export const mocklistItemProps = {
+export const mockListItemProps = {
   base,
 };

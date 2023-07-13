@@ -1,4 +1,5 @@
 import ListItem from './components/listItem/listItem';
+
 export default async function Home() {
   return (
     <main className="flex flex-col justify-around min-h-screen bg-bgManifesto">
