@@ -1,4 +1,6 @@
+'use client';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import deleteIcon from '../../../../public/delete.svg';
 import edit from '../../../../public/edit.svg';
 import { User } from '../../../../types';
@@ -7,6 +9,7 @@ export interface IListItem {
 }
 
 export default function ListItem(user: User) {
+  const router = useRouter();
   const { id, Name } = user;
   const remove = (id: number) => {
     let dataList: User[] = JSON.parse(localStorage.getItem('users') || '[]');
@@ -36,7 +39,13 @@ export default function ListItem(user: User) {
               <Image src={edit} alt={'edit icon'}></Image>
             </button>
 
-            <button className=" w-auto h-auto" onClick={() => remove(id)}>
+            <button
+              className=" w-auto h-auto"
+              onClick={() => {
+                remove(id);
+                router.refresh();
+              }}
+            >
               <Image src={deleteIcon} alt={'delete icon'}></Image>
             </button>
           </div>
