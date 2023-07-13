@@ -86,7 +86,7 @@ export default function Home() {
         <p className=" font-montserrat text-xl text-white w-4/5 sm:bg-bgWeb text-center p-6 sm:p-10">
           Sign in at the registry.
         </p>
-        <ul className=" w-full flex flex-col items-center h-72 sm:h-58 overflow-y-auto">
+        <ul className=" w-4/5 flex flex-col items-center h-72 sm:h-58 overflow-y-auto bg-bgManifesto">
           {localUsers.map((user) => (
             <ListItem
               key={user.id}

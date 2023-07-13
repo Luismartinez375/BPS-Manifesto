@@ -112,7 +112,13 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
     if (window.localStorage.getItem('editId')) {
       var editId = JSON.parse(window.localStorage.getItem('editId') || ' ');
     }
-    const maxId = users[users.length - 1].id;
+    let maxId: number;
+    if (users.length === 0) {
+      maxId = 0;
+    } else {
+      maxId = users[users.length - 1].id;
+    }
+
     if (editId) {
       for (let i = 0; i < users.length; i++) {
         if (users[i].id === editId) {
@@ -245,7 +251,20 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
         <button
           className=" font-inter text-white bg-saveButton h-12 w-1/2"
           type="submit"
-          disabled={!isFormValid}
+          disabled={
+            !isFormValid ||
+            nameError.includes(
+              'Must be 2-12 characters long and have no special characters.'
+            ) ||
+            phoneError.includes('Must enter 10 digit number.') ||
+            phoneError.includes('should only contain digits') ||
+            emailError.includes('Email is invalid') ||
+            emergencyNameError.includes(
+              'Must be 2-12 characters long and have no special characters.'
+            ) ||
+            emergencyPhoneError.includes('Must enter 10 digit number.') ||
+            emergencyPhoneError.includes('should only contain digits')
+          }
           onClick={handleSubmit}
         >
           Save and Sign
