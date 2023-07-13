@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-
+import users from '../../../../db';
+import { User } from '../../../../types';
 export interface IUserForm {
   sampleTextProp: string;
 }
@@ -100,8 +101,9 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
       setEmergencyPhoneError('');
     }
   };
+  
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // Perform your insert operation using the form data
     console.log({
@@ -110,7 +112,16 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
       email,
       emergencyName,
       emergencyPhone,
-    }); // Replace with your database insertion logic
+    }); 
+    const user: User = {
+      Name: name,
+      PhoneNumber: phone,
+      Email: email,
+      EmergenyContactname: emergencyName,
+      EmergencyContact: emergencyPhone,
+    }
+    users.push(user);
+    console.log(users);
   };
 
   const validateForm = () => {
@@ -134,7 +145,6 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
     <div className=" font-montserrat w-5/6 h-3/4 bg-form shadow sm:w-3/5 sm:p-5">
       <form
         className=" w-full h-full flex flex-col items-center justify-around"
-        onSubmit={handleSubmit}
       >
         <div className=" w-4/5 h-10 rounded outline outline-1">
           <input
@@ -142,7 +152,6 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
             type="text"
             id="name"
             placeholder="Name"
-            pattern="[A-Za-z]"
             value={name}
             onChange={handleNameChange}
             onBlur={handleNameBlur}
@@ -159,7 +168,6 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
             type="text"
             id="phone"
             placeholder="Phone"
-            pattern="[0-9]"
             value={phone}
             onChange={handlePhoneChange}
             onBlur={handlePhoneBlur}
@@ -176,7 +184,6 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
             type="text"
             id="email"
             placeholder="Email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             value={email}
             onChange={handleEmailChange}
             onBlur={handleEmailBlur}
@@ -193,7 +200,6 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
             type="text"
             id="emergencyName"
             placeholder="Emergency Contact Name"
-            pattern="[A-Za-z]"
             value={emergencyName}
             onChange={handleEmergencyNameChange}
             onBlur={handleEmergenyNameBlur}
@@ -210,7 +216,6 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
             type="text"
             id="emergencyPhone"
             placeholder="Emergency Contact Phone"
-            pattern="[0-9]"
             value={emergencyPhone}
             onChange={handleEmergencyPhoneChange}
             onBlur={handleEmergencyPhoneBlur}
@@ -225,6 +230,8 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
           className=" font-inter text-white bg-saveButton h-12 w-1/2"
           type="submit"
           disabled={!isFormValid}
+          onClick={handleSubmit}
+
         >
           Save and Sign
         </button>

@@ -1,15 +1,15 @@
 'use client';
 import Image from 'next/image';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import back from '../../../public/back.svg';
 import UserForm from '../components/signInForm/signInForm';
 export default function page() {
-  // const router = useRouter();
+  const router = useRouter();
   return (
     <main className=" bg-gray-4 w-full h-screen bg-bgForm flex flex-col justify-between items-center">
       <button
         className="flex flex-row z-0 p-4 text-orange-300 relative self-start text-xl font-montserrat"
-        // onClick={() => router.back()}
+        onClick={() => router.back()}
       >
         <Image src={back} alt={'back'}></Image>
         Back

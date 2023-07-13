@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import users from '../../../../db';
 import deleteIcon from '../../../../public/delete.svg';
 import edit from '../../../../public/edit.svg';
 import { User } from '../../../../types';
@@ -7,7 +8,7 @@ export interface IListItem {
 }
 
 export default function ListItem(user: User) {
-  const { Name, PhoneNumber, Email, EmergenyContactname, EmergencyContact } =
+  const { id, Name, PhoneNumber, Email, EmergenyContactname, EmergencyContact } =
     user;
   return (
     <>
@@ -19,7 +20,10 @@ export default function ListItem(user: User) {
               <Image src={edit} alt={'edit icon'}></Image>
             </button>
 
-            <button className=" w-auto h-auto">
+            <button className=" w-auto h-auto" onClick={() => {
+              const index = users.findIndex((user) => user.id === id);
+              users.splice(index, 1);
+            }}>
               <Image src={deleteIcon} alt={'delete icon'}></Image>
             </button>
           </div>
