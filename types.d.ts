@@ -1,5 +1,5 @@
 type User = {
-  id?: number;
+  id: number;
   Name: string;
   PhoneNumber: string;
   Email: string;
@@ -7,4 +7,3 @@ type User = {
   EmergencyContact: string;
 };
 export { User };
-

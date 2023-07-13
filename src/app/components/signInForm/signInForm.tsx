@@ -1,12 +1,13 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import users from '../../../../db';
 import { User } from '../../../../types';
 export interface IUserForm {
   sampleTextProp: string;
 }
 
 export default function UserForm({ sampleTextProp }: IUserForm) {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -50,9 +51,9 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
   };
   const handleNameBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (
-      !/^[A-Za-z]+$/.test(e.target.value) ||
+      !/^[a-z ,.'-]+$/i.test(e.target.value) ||
       name.length < 2 ||
-      !/^[A-Za-z]+$/.test(e.target.value) ||
+      !/^[a-z ,.'-]+$/i.test(e.target.value) ||
       name.length > 12
     ) {
       setNameError(
@@ -80,9 +81,9 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
   };
   const handleEmergenyNameBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (
-      !/^[A-Za-z]+$/.test(e.target.value) ||
+      !/^[a-z ,.'-]+$/i.test(e.target.value) ||
       emergencyName.length < 2 ||
-      !/^[A-Za-z]+$/.test(e.target.value) ||
+      !/^[a-z ,.'-]+$/i.test(e.target.value) ||
       emergencyName.length > 12
     ) {
       setEmergencyNameError(
@@ -101,27 +102,44 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
       setEmergencyPhoneError('');
     }
   };
-  
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // Perform your insert operation using the form data
-    console.log({
-      name,
-      phone,
-      email,
-      emergencyName,
-      emergencyPhone,
-    }); 
-    const user: User = {
-      Name: name,
-      PhoneNumber: phone,
-      Email: email,
-      EmergenyContactname: emergencyName,
-      EmergencyContact: emergencyPhone,
+    var users: User[] = JSON.parse(
+      window.localStorage.getItem('users') || '[]'
+    );
+    if (window.localStorage.getItem('editId')) {
+      var editId = JSON.parse(window.localStorage.getItem('editId') || ' ');
     }
-    users.push(user);
-    console.log(users);
+    const maxId = users[users.length - 1].id;
+    if (editId) {
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].id === editId) {
+          users[i].Name = name;
+          users[i].PhoneNumber = phone;
+          users[i].Email = email;
+          users[i].EmergenyContactname = emergencyName;
+          users[i].EmergencyContact = emergencyPhone;
+          window.localStorage.setItem('users', JSON.stringify(users));
+          window.localStorage.removeItem('editId');
+          window.location.href = '/';
+        }
+      }
+    } else {
+      const user: User = {
+        id: maxId + 1,
+        Name: name,
+        PhoneNumber: phone,
+        Email: email,
+        EmergenyContactname: emergencyName,
+        EmergencyContact: emergencyPhone,
+      };
+      users.push(user);
+      window.localStorage.setItem('users', JSON.stringify(users));
+      console.log('user', user);
+    }
+    router.push('/');
   };
 
   const validateForm = () => {
@@ -143,9 +161,7 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
 
   return (
     <div className=" font-montserrat w-5/6 h-3/4 bg-form shadow sm:w-3/5 sm:p-5">
-      <form
-        className=" w-full h-full flex flex-col items-center justify-around"
-      >
+      <form className=" w-full h-full flex flex-col items-center justify-around">
         <div className=" w-4/5 h-10 rounded outline outline-1">
           <input
             className=" px-2 py-2 w-full h-full bg-inherit focus:outline-none"
@@ -231,7 +247,6 @@ export default function UserForm({ sampleTextProp }: IUserForm) {
           type="submit"
           disabled={!isFormValid}
           onClick={handleSubmit}
-
         >
           Save and Sign
         </button>
